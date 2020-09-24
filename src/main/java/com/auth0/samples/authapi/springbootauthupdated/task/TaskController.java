@@ -1,6 +1,6 @@
 package com.auth0.samples.authapi.springbootauthupdated.task;
 
-import org.springframework.util.Assert;
+import com.auth0.samples.authapi.springbootauthupdated.service.TaskService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,33 +16,32 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
-    public TaskController(TaskRepository taskRepository) {
+    private TaskService taskService;
+
+    public TaskController(TaskRepository taskRepository, TaskService taskService) {
         this.taskRepository = taskRepository;
+        this.taskService = taskService;
     }
 
     @PostMapping
     public void addTask(@RequestBody Task task) {
-        taskRepository.save(task);
+        taskService.createTask(task);
     }
 
     @GetMapping
     public List<Task> getTasks() {
-        return taskRepository.findAll();
+        return taskService.findAll();
     }
 
     @PutMapping("/{id}")
     public void editTask(@PathVariable long id, @RequestBody Task task) {
-        Task existingTask = taskRepository.findById(id).get();
-        Assert.notNull(existingTask, "Task not found");
-        existingTask.setDescription(task.getDescription());
-        taskRepository.save(existingTask);
+        taskService.updateTask(id, task);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable long id) {
-        Task taskToDel = taskRepository.findById(id).get();
-        taskRepository.delete(taskToDel);
+        taskService.deleteTask(id);
     }
 }

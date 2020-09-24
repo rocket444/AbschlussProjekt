@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserClient</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js" type="application/javascript"></script>
+</head>
+<body>
+<form id="registerForm">
+    <label for="nameField">Name</label>
+    <input type="text" name="name" placeholder="Name" id="nameField" required>
+    <label for="emailField">Email</label>
+    <input type="email" name="email" placeholder="Mail" id="emailField" required>
+    <label for="passwordField">Password</label>
+    <input type="password" name="password" placeholder="Password" id="passwordField" required>
+    <input type="submit" name="confirm" value="Submit">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody id="entryDisplay">
+    <tr>
+        <td colspan="3">Loading...</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
