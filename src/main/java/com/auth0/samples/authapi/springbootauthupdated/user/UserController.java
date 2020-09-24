@@ -20,12 +20,20 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Finds all users
+     * @return list with all users
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationUser> getAllUsers() {
         return userService.findAll();
     }
 
+    /**
+     * Method that creates a user
+     * @param user user which should be crated
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void signUp(@RequestBody ApplicationUser user) {
@@ -38,12 +46,20 @@ public class UserController {
         }
     }
 
+    /**
+     * Deletes user
+     * @param id id of the user which should be deleted
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@Valid @PathVariable long id) {
         userService.deleteUser(id);
     }
 
+    /**
+     * Updates user
+     * @param user user which should be updated
+     */
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ApplicationUser editEntry(@Valid @RequestBody ApplicationUser user) {

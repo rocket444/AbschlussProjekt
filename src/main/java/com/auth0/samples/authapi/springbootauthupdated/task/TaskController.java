@@ -22,21 +22,38 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    /**
+     * Method that adds tasks
+     * @param task task which should be added
+     */
     @PostMapping
     public void addTask(@RequestBody Task task) {
         taskService.createTask(task);
     }
 
+    /**
+     * Finds all tasks
+     * @return list with all tasks
+     */
     @GetMapping
     public List<Task> getTasks() {
         return taskService.findAll();
     }
 
+    /**
+     * Updates task
+     * @param task task which should be updated
+     */
     @PutMapping("/{id}")
-    public void editTask(@PathVariable long id, @RequestBody Task task) {
-        taskService.updateTask(id, task);
+    public void editTask(@RequestBody Task task) {
+        System.out.println(task.getDescription());
+        taskService.updateTask(task);
     }
 
+    /**
+     * Deletes task
+     * @param id id of the task which should be deleted
+     */
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable long id) {
         taskService.deleteTask(id);

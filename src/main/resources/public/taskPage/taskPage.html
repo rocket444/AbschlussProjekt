@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <script src="scriptTask.js" type="application/javascript"></script>
+</head>
+<body>
+<form id="taskForm">
+    <label for="taskField">Task description</label>
+    <input type="text" name="description" placeholder="description" id="taskField" required>
+    <input type="submit" name="confirm" value="Submit">
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody id="taskDisplay">
+    <tr>
+        <td colspan="2">Loading...</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

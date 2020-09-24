@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 
+import static com.auth0.samples.authapi.springbootauthupdated.security.SecurityConstants.CREATE_TASKS_URL;
 import static com.auth0.samples.authapi.springbootauthupdated.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -27,8 +28,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //Sets permissions
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.DELETE, SIGN_UP_URL + "/**").permitAll()
+                .antMatchers(HttpMethod.PUT, SIGN_UP_URL + "/**").permitAll()
+                .antMatchers(HttpMethod.POST, CREATE_TASKS_URL).permitAll()
+                .antMatchers(HttpMethod.GET, CREATE_TASKS_URL).permitAll()
+                .antMatchers(HttpMethod.DELETE, CREATE_TASKS_URL + "/**").permitAll()
+                .antMatchers(HttpMethod.PUT, CREATE_TASKS_URL + "/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

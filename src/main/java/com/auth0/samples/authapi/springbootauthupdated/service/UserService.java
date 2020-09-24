@@ -14,20 +14,36 @@ public class UserService {
         this.applicationUserRepository = applicationUserRepository;
     }
 
+    /**
+     * Method that creates a user
+     * @param user user which should be crated
+     */
     public ApplicationUser createUser(ApplicationUser user) {
         return applicationUserRepository.saveAndFlush(user);
     }
 
+    /**
+     * Deletes user
+     * @param id id of the user which should be deleted
+     */
     public void deleteUser(long id) {
         applicationUserRepository.deleteById(id);
     }
 
-    public ApplicationUser updateUser(ApplicationUser entry) {
-        ApplicationUser entryFromDB = applicationUserRepository.getOne(entry.getId());
-        entryFromDB.setUsername(entry.getUsername());
+    /**
+     * Updates user
+     * @param user user which should be updated
+     */
+    public ApplicationUser updateUser(ApplicationUser user) {
+        ApplicationUser entryFromDB = applicationUserRepository.getOne(user.getId());
+        entryFromDB.setUsername(user.getUsername());
         return applicationUserRepository.saveAndFlush(entryFromDB);
     }
 
+    /**
+     * Finds all users
+     * @return list with all users
+     */
     public List<ApplicationUser> findAll() {
         return applicationUserRepository.findAll();
     }

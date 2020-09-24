@@ -14,20 +14,36 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
+    /**
+     * Method that creates a task
+     * @param task task which should be crated
+     */
     public Task createTask(Task task) {
         return taskRepository.saveAndFlush(task);
     }
 
+    /**
+     * Deletes task
+     * @param id id of the task which should be deleted
+     */
     public void deleteTask(long id) {
         taskRepository.deleteById(id);
     }
 
-    public Task updateTask(long idToEdit, Task task) {
-        Task entryFromDB = taskRepository.getOne(idToEdit);
+    /**
+     * Updates task
+     * @param task task which should be updated
+     */
+    public Task updateTask(Task task) {
+        Task entryFromDB = taskRepository.getOne(task.getId());
         entryFromDB.setDescription(task.getDescription());
         return taskRepository.saveAndFlush(entryFromDB);
     }
 
+    /**
+     * Finds all tasks
+     * @return list with all tasks
+     */
     public List<Task> findAll() {
         return taskRepository.findAll();
     }
